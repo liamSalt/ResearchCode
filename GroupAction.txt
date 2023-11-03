@@ -1,0 +1,119 @@
+Q:=Rationals();
+
+import "TaharaGroups.txt":O2W1,O2W2,O2W3,O2W4,O2W5,O3W1,O3W2,O4W1,O4W2,O4W3,O4W4,O4W5,O4W6,
+O4W7,O4W8,O4W9,O4W10,O4W11,O4W12,O4W13,O4W14,O4W15,O6W1,O6W2,O6W3,O6W4,O6W5,O6W6,O6W7,O6W8,
+O6W9,O6W10,O8W1,O8W2,O8W3,O8W4,O8W5,O8W6,O8W7,O8W8,O8W9,O8W10,O8W11,O8W12,O8W13,O8W14,O12W1,
+O12W2,O12W3,O12W4,O12W5,O12W6,O12W7,O12W8,O12W9,O12W10,O12W11,O16W1,O16W2,O24W1,O24W2,O24W3,
+O24W4,O24W6,O24W7,O24W8,O24W9,O24W10,O24W11,O48W1,O48W2,O48W3;
+
+V:=VectorSpace(Q,3);
+
+f:=function(u) return Basis(sub<V|u>)[1];end function;
+
+A:={f(V![a,b,c]):a,b,c in [-2..2]|[a,b,c] ne [0,0,0]}; //non-collinear lattice points
+
+Action:= procedure(Groups:size:=[23..31],subsets:=0,rev:=false)
+  // Groups is either a single matrix group, or a sequence of matrix groups
+  // size refers to the target size of KS set to be generated, default is [23..31] (also accepts single integer)
+  // rev decides how the unions of orbits are iterated over, default is to generate all of them, set to true for revolving door
+  // subsets determines max number of orbits to combine when looking for solution, default (0) means check all subsets
+	
+	if Type(Groups) ne SeqEnum then Groups:=[Groups];end if;
+	if Type(size) ne SeqEnum then size:=[size]; end if;
+	
+	
+	for G in Groups do 
+		print G,IdentifyGroup(G);
+		
+		O:={{f(a*Transpose(M)):M in G}:a in A};
+		Orbits:=[b:b in O| b subset A];
+		printf "Number of Orbits: %o\n\n", #Orbits;
+		N:=1;
+		
+		while N in [1..2^#Orbits-1] do
+			if not rev then
+				N:=0;//turn off while loop
+				if subsets eq 0 then
+					ssOrbits:=Subsets({i: i in [1..#Orbits]});
+				else
+					ssOrbits:=&join{Subsets({i: i in [1..#Orbits]},i): i in [1..subsets]};
+				end if;
+				
+				U:={&join{Orbits[i]:i in T}:T in ssOrbits|#(&join{Orbits[i]:i in T}) gt 22}; //look for all unions of orbits of specifized size(s)
+			else
+				I:=Intseq(N,2);
+				T:=&join{Orbits[j]: j in [1..#I]|I[j] eq 1};
+				if #T gt 22 then U:={T}; else U:={};end if;
+				N:=N+1;
+			end if;
+		
+
+			for u in U do
+				O3:={{v,w,t}:v,w,t in u diff {V![0,0,0]}|{DotProduct(v,w),DotProduct(v,t),DotProduct(w,t)} eq {0}}; //Orthogonal Triples
+				O2:={{v,w}:v,w in u diff {V![0,0,0]} |DotProduct(v,w) eq 0 and not exists{C:C in O3| {v,w} subset C}}; //Orthogonal pairs
+				
+				m:=#O3;
+				l:=#O2;
+				
+				if m ne 0 then //if there are no bases, no vector needs to be coloured
+					
+					Tl:=[v:v in u|exists{b:b in O3 join O2|v in b}]; //find vectors actually used in the orth sets
+					n:=#Tl;
+					
+					if n in size then //check that number of vectors is at least that of the proved lower bound
+						R:=RealField();
+						print #n;
+						lhs:=Matrix(R,m+l,n,[]);
+						for i:=1 to m+l do
+							for j:=1 to n do
+								if i lt m+1 then
+									if Tl[j] in Setseq(O3)[i] then
+										lhs[i][j]:=1;
+									else
+										lhs[i][j]:=0;
+									end if;
+								else
+									if Tl[j] in Setseq(O2)[i-m] then
+										lhs[i][j]:=1;
+									else
+										lhs[i][j]:=0;
+									end if;
+								end if;
+							end for;
+							
+						end for;
+						
+
+						rhs:=Matrix(R,m+l,1,[1^^(m+l)]);
+						rel:=Matrix(R,m+l,1,[0^^(m),(-1)^^(l)]);
+						obj:=Matrix(R,1,n,[0^^(n)]);
+						
+						a,b:=MaximalZeroOneSolution(lhs,rel,rhs,obj);
+					else
+						b:=0;
+					end if;
+					
+					if b eq 0 then //output the result of the ILP
+						printf "Solution Exists\n\n";
+					elif b eq 1 or b eq 4 then
+						printf "Failure";
+					elif b eq 2 then
+						printf "**Infeasible problem**\n";
+						printf("Number of Vectors: %o\n\n"),n;
+						printf "Vectors: %o\n\nBases: %o\n\n Orthogonal Pairs: %o\n\n", u,Setseq(O3),Setseq(O2);
+						
+					elif b eq 3 then
+						printf "Unbounded problem";
+					end if;
+					
+				end if;
+			end for;
+		end while;
+	end for;
+end procedure;
+
+Action(Reverse([O6W1,O6W2,O6W3,O6W4,O6W5,O6W6,O6W7,O6W8,O6W9,O6W10,O8W1,O8W2,O8W3,O8W4]):rev:=true);
+//,O8W8 //too big
+//,O8W9,O8W10,O8W11,O8W12,O8W13,O8W14,O12W1,
+//O12W2,O12W3,O12W4,O12W5,O12W6,O12W7,O12W8,O12W9,O12W10,O12W11,O16W1,O16W2,O24W1,O24W2,O24W3,
+//O24W4,O24W6,O24W7,O24W8,O24W9,O24W10,O24W11,O48W1,O48W2,O48W3]));

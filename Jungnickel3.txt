@@ -1,0 +1,70 @@
+Jungnickel := function(q:NS:=0)
+	//q is some odd prime power, matrix will be size 2q over F_q
+	//NS non-square parameter, default is to take either -1, or smallest one, depending on case
+	
+    if IsPrimePower(q) then //input verification
+		
+		if IsPrime(q) then
+			F:=[GF(q)!i:i in [0..q-1]];
+		else
+			F := SetToSequence(Set(GF(q))); 
+			copy:=F[1]; //force 0 to be the first element
+			idx:=Index(F,0);
+			F[1]:=F[idx];
+			F[idx]:=copy;
+			
+		end if;
+		
+		N:=Setseq(Set(GF(q)) diff {x^2:x in Set(GF(q))}); //set of all non-squares
+		
+		if NS in N then //if inputted NS is actually a non-square
+			n:=NS;
+		elif q mod 4 eq 3 then //else if q is 3 mod 4
+			n:=q-1;
+		else //else just take the smallest non-square
+			n:=N[1];
+		end if;  
+		
+		//printf "\nq=%o\nn=%o\n",q,n;
+
+		D:=Matrix(GF(q),2*q,2*q,[]);
+
+		for i:=1 to q do
+			for j:=1 to q do
+
+				x:=F[i];
+				y:=F[j];
+
+				D[i,j]:=x*y+(x^2/4);
+				D[i,j+q]:=x*y+(n*x^2/4);
+				D[i+q,j]:=x*y-y^2-(x^2/4);
+				D[i+q,j+q]:=(x*y-y^2-(x^2/4))/n;
+
+			end for;
+		end for;
+
+		//now make the first row all 0 (F[1]=0, so it shouldn't matter anyway)
+		for j:=1 to 2*q do
+			t:=D[1,j];
+			for i:=1 to 2*q do
+				D[i,j]:=D[i,j]-t;
+			end for;
+		end for;
+		
+		//now make first column all 0
+		for i:=1 to 2*q do
+			t:=D[i,1];
+			for j:=1 to 2*q do
+				D[i,j]:=D[i,j]-t;
+			end for;
+		end for;
+		
+
+		printf "q=%o  n=%o  rank=%o\n rank of inner 4 rows:%o\n", q,n,Rank(D),Dimension(sub<RowSpace(D)|{D[i]:i in [q-1..q+2]}>);
+		
+			
+		return D;
+	  
+    end if;
+  
+end function;

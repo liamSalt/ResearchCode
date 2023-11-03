@@ -1,0 +1,37 @@
+GraphKS:= procedure(V:B:=[],C:=[])
+	//V is any finite set of vectors belonging to the same vector space
+	//B is any set of bases consisting of vectors in V, default it generate all possible
+	//C is any non-basis set of sets of pairwise orthogonal elements of V, default it to generate all possible
+  
+	d:=Degree(Random(V)); //gets order of vectors
+	
+	if B eq [] then
+		B:=Setseq({b: b in Subsets(V,d)| forall{{u,v}:u,v in b|Round(1000*Modulus(InnerProduct(u,v))) eq 0 or u eq v}}); //bases
+	end if;
+  
+	if C eq [] then
+		C:=Setseq(&join{{c: c in Subsets(V,k)|forall{{u,v}:u,v in c|Round(1000*Modulus(InnerProduct(u,v))) eq 0 or u eq v}}: k in [2..(d-1)]}); //non-basis orthsets
+	end if;
+	
+	n:=#V; //number of vectors
+	m:=#B; //number bases
+	l:=#C; //number of non-basis orthsets
+	
+	V:=Setseq(V);
+	
+	//convert vectors to their indices in V
+	Bn := {{Index(V,u):u in b}: b in B};
+	Cn := {{Index(V,u):u in c}: c in C};
+	
+	E:= {{u,v}:u,v in [1..n]| exists{s:s in Bn join Cn| {u,v} subset s and u ne v}}; //Defines Edge set of Orthogonality graph
+	
+	G:=Graph<n|E>; //Orthogonality Graph
+	
+	IS := AllCliques(Complement(G)); //Set of all Maximal Independent Setseq
+	
+	if exists{M: M in IS| forall{v,b,c:v in M,b in Bn,c in Cn|{Index(G,v)} meet b eq 1 and {Index(G,v}} meet c le 1} then
+		print "Solution Exists";
+	else
+		printf "**KS pair**\n\nVectors: %o\n\n%o\n\nBases: %o\n\n%o\n\nOrthsets: %o\n\n%o\n\n",n,V,m,B,l,C;
+	end if
+end procedure;

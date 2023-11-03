@@ -1,0 +1,19 @@
+//CK and Q31d
+G1:=MatrixGroup<3,Rationals()|[0,-1,0,1,0,0,0,0,-1],[1,0,0,0,1,0,0,0,-1]>;
+
+//Q31a and Q31b
+G2:=MatrixGroup<3,Rationals()|[0,0,1,0,1,0,-1,0,0],[1,0,0,0,-1,0,0,0,1]>;
+
+//Q31c and Q31e
+G3:=MatrixGroup<3,Rationals()|[-1,0,0,0,1,0,0,0,1],[-1,0,0,0,0,-1,0,1,0]>;
+
+//to calc orbits
+V:=VectorSpace(Rationals(),3);
+f:=function(u) return Basis(sub<V|u>)[1];end function;
+
+A:=Q31d;
+G:=G1;
+
+O:={{f(a*M):M in G}:a in A};
+printf "Orbit sizes: %o\n", {*#b:b in O*};
+printf "Eigenvectors: %o\n",&join{b: b in O|#b eq 1}

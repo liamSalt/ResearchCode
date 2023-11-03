@@ -1,0 +1,228 @@
+// Example Matrices
+
+H3:=Matrix(GF(3),6,6,[0,0,0,0,0,0,0,0,1,1,2,2,0,1,0,2,2,1,0,1,2,0,1,2,0,2,2,1,0,1,0,2,1,2,1,0]);
+H5:=Matrix(GF(5),10,10,[0,0,0,0,0,0,0,0,0,0,0,0,1,1,2,2,3,3,4,4,0,1,0,3,2,4,1,4,2,3,0,1,3,4,3,1,0,2,4,2,0,2,3,0,1,3,4,1,2,4,0,2,4,2,0,1,3,4,3,1,0,3,1,2,4,0,4,2,1,3,0,3,2,4,1,4,2,3,0,1,0,4,2,1,4,3,1,0,3,2,0,4,4,3,3,2,2,1,1,0]);
+H_5 :=Matrix(GF(5),10,10,[0,0,0,0,0,0,0,0,0,0,4,0,1,2,3,2,3,4,0,1,1,3,0,2,4,3,0,2,4,1,1,4,2,0,3,3,1,4,2,0,4,3,2,1,0,2,1,0,4,3,0,4,1,1,4,0,3,2,2,3,1,1,4,0,4,2,2,3,0,3,4,0,4,1,1,3,0,3,2,2,4,1,1,4,0,3,2,2,3,0,1,4,0,4,1,2,3,0,3,2]);
+H12:= Matrix(GF(2),12,12,[0,1,1,1,1,1,1,1,1,1,1,1,0,0,1,0,1,1,1,0,0,0,1,0,0,0,0,1,0,1,1,1,0,0,0,1,0,1,0,0,1,0,1,1,1,0,0,0,0,0,1,0,0,1,0,1,1,1,0,0,0,0,0,1,0,0,1,0,1,1,1,0,0,0,0,0,1,0,0,1,0,1,1,1,0,1,0,0,0,1,0,0,1,0,1,1,0,1,1,0,0,0,1,0,0,1,0,1,0,1,1,1,0,0,0,1,0,0,1,0,0,0,1,1,1,0,0,0,1,0,0,1,0,1,0,1,1,1,0,0,0,1,0,0]);
+H7:= Matrix(GF(7),14,14,[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,2,2,3,3,4,4,5,5,6,6,0,1,0,2,4,5,1,6,3,6,2,5,3,4,0,3,5,3,2,1,0,6,5,2,6,4,4,1,0,6,3,4,6,3,1,5,4,2,1,2,0,5,0,5,4,1,6,1,2,4,6,5,3,0,3,2,0,4,2,6,3,5,2,5,1,0,4,3,6,1,0,2,6,5,4,0,3,4,1,3,6,1,2,5,0,2,5,6,0,4,4,3,3,1,1,6,5,2,0,5,1,4,1,6,4,2,5,6,0,3,2,3,0,4,6,2,5,3,5,2,0,1,3,4,1,6,0,6,4,3,3,6,5,1,2,4,2,1,5,0,0,3,3,5,1,2,6,0,2,5,4,6,1,4,0,1,2,0,5,4,6,1,6,3,5,2,4,3]);
+H4:=16,[0,0,0,0,0,0,0,0,1,2,2,3,0,1,3,0,2,2,0,2,1,3,0,2,0,2,3,2,1,0,0,3,2,1,3,1]);
+HG:=Matrix(GF(2),12,24,[1,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,1,1,1,0,1,1, 0,1,0,0,0,0,0,0,0,0,0,0,1,1,0,1,0,0,0,1,1,1,0,1, 0,0,1,0,0,0,0,0,0,0,0,0,0,1,1,0,1,0,0,0,1,1,1,1, 0,0,0,1,0,0,0,0,0,0,0,0,1,0,1,1,0,1,0,0,0,1,1,1, 0,0,0,0,1,0,0,0,0,0,0,0,1,1,0,1,1,0,1,0,0,0,1,1, 0,0,0,0,0,1,0,0,0,0,0,0,1,1,1,0,1,1,0,1,0,0,0,1, 0,0,0,0,0,0,1,0,0,0,0,0,0,1,1,1,0,1,1,0,1,0,0,1, 0,0,0,0,0,0,0,1,0,0,0,0,0,0,1,1,1,0,1,1,0,1,0,1, 0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1,1,1,0,1,1,0,1,1, 0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,1,1,1,0,1,1,0,1, 0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,1,1,1,0,1,1,1, 0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0]); 
+H16:=Matrix(IntegerRing(4),16,16,[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,1,1,1,1,0,0,0,0,1,1,1,1,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,1,1,0,0,1,1,0,0,1,1,0,0,1,1,0,0,1,1,0,0,1,1,1,1,0,0,1,1,0,0,0,0,1,1,1,1,0,0,0,0,1,1,1,1,0,0,0,0,1,1,1,1,0,0,1,1,0,0,0,0,1,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,1,0,1,0,1,0,1,0,0,1,0,1,1,0,1,0,0,1,0,1,1,0,1,0,0,1,0,1,1,0,1,0,1,0,1,0,0,1,0,1,0,1,1,0,0,1,1,0,0,1,1,0,0,1,1,0,0,1,1,0,0,1,1,0,1,0,0,1,1,0,0,1,0,1,1,0,1,0,0,1,0,1,1,0,1,0,0,1,0,1,1,0,1,0,0,1,1,0,0,1,0,1,1,0]);
+
+
+//Subspaces code
+
+M:=function(k,q)
+  return &*[ q^i-1 : i in [ 1 .. k ] ];
+end function;
+
+G:=function(n,k,q)
+	return M(n,q)/ ( M(k,q) * M(n-k,q) );
+end function;
+
+Subspaces := function(V,k,q) //returns all the subspaces of V of dim k
+	n:=Dimension(V);
+	S:=Set(V);
+	subsp := { sub< V | b > : b in Subsets(S,k) | Dimension( sub<V|b> ) eq k };
+	//printf "check number of subspaces ... %o\n", G(n,k,q) eq  #subsp;
+	return subsp;
+
+end function;
+
+
+// main bit
+
+diophantineSol := function(P,m)
+R:=RealField();
+
+N:=Setseq({#p:p in P});
+N;
+lhs:=Matrix(R,2*#N+1,#N,[]);
+for j:= 1 to #N do
+	lhs[1][j]:= N[j];
+	lhs[j+1][j]:= 1;
+	lhs[j+#N+1][j]:=1;
+end for;
+
+
+rhs:=Matrix(R,2*#N+1,1,[m,m^^#N,0^^#N]);
+rel:=Matrix(R,2*#N+1,1,[0,(-1)^^#N,1^^#N]);
+obj:=Matrix(R,1,#N,[0^^#N]);
+
+a,b:=MaximalIntegerSolution(lhs,rel,rhs,obj);
+
+
+if b eq 2 then
+	return false;
+else
+  print "Diophantine Equation has solution";
+	return true;
+end if;
+end function;
+
+
+toReal := function(B,p,d)
+	// function used to check if KS bases are orthogonal in C
+	// takes as input: set of vectors, characteristic, and length of vectors
+	// returns multiset of inner products of the vectors
+	
+	C<i>:= ComplexField();
+	V:=VectorSpace(C,d);
+	w:=RootOfUnity(p);
+	
+	Br:=SetToSequence({[C!w^(Integers()!k):k in Eltseq(B[i])]:i in [1..#B]});
+	
+	A:={* Round(1000*Modulus(InnerProduct(V!Br[i],V!Br[j]))) : i,j in [1..#Br] | i lt j *};
+	return  A;
+	
+end function;
+
+
+ssLP:= procedure(H: L:=[],OrthSets:=0)
+	// Main function for generating vectors/bases, and formulating/solving the ILP using magma
+	// H is any Hadamard matrix written in Z_p
+	// L parameter is a either list of subspaces to consider, or which sizes of subspaces to consider, defualt is to use only the full space
+	// OrthSets determines the maximum size of non-basis orthogonal sets the ILP will consider
+	
+	r:=NumberOfRows(H);
+	c:=NumberOfColumns(H);
+	B0:=[H[i]:i in [1..r]];
+	V:=sub<RowSpace(H)|B0>;
+	q:=Characteristic(BaseRing(H));
+	
+	if Type(L) eq SeqEnum and L eq [] then 
+		SS:={{V}};
+	
+	else if ExtendedType(L) eq SeqEnum[ModTupFld] or ExtendedType(L) eq SeqEnum[ModTupRng] then
+		SS:={L};
+	else
+		SS := {Subspaces(V,k,q):k in L}; //generate all subspaces
+	end if;
+	end if;
+	
+	SSl := SetToSequence(SS);
+	
+	for SSk in SSl do //outer loop is over dim of subspace
+		for s in SSk do
+			Sl:=SetToSequence(Set(s)); //set of all vectors in subspace
+			
+			n:=#Sl;
+			
+			BB:={[Sl[i]+b:b in B0]:i in [1..n]}; //creates bases
+			
+			BBl:=SetToSequence(BB);
+			
+			assert forall{b: b in BB| toReal(b,q,c) eq {* 0^^(Binomial(r,2)) *}}; //checks all bases are orthogonal
+			
+			T:={v: v in V |exists{b:b in BB | v in b}}; //finds set of vectors actually used in the bases
+			Tl:=SetToSequence(T);
+			
+			
+			if OrthSets gt 0 then
+				O:={U:U in &join{Subsets(T,i):i in [OrthSets..OrthSets]}|toReal(Setseq(U),q,r) eq {*0^^Binomial(#U,2)*} and not exists{v:v in T diff U|#U+1 le OrthSets and toReal(Setseq(U join {v}),q,r) eq {*0^^Binomial(#U+1,2)*}} and not exists{b:b in BB| U subset b}};
+				//O:= {{v,w}:v,w in Tl|toReal([v,w],q,r) eq {* 0 *} and not exists{b:b in BBl|{v,w} subset b} }; //Pairs of Orthogonal vectors (not already represented in bases)
+				//O:= {U:U in{Subsets(T1,i):i in [1..Dimension(s)]|ToReal(U)
+				
+			else
+				O:={};
+			end if;
+			
+        
+      
+      
+			Ol:=SetToSequence(O);
+			
+			
+			
+			m:=#BBl; //number bases
+			n:=#Tl; //number of vectors
+			l:=#Ol;
+			
+			ONl:={{Index(Tl,v):v in Ol[j]}:j in [1..l]};
+			
+			
+			BN:={[Index(Tl,v):v in BBl[j]]:j in [1..m]}; //converts vectors to distinct integers
+			BNl:=SetToSequence(BN);
+			
+			printf "Number of bases: %o\nNumber of vectors/codewords: %o\nNumber of Orth Pairs: %o\n",m,n,l;
+			print s;
+			L:=[{H[i]+u:u in s}:i in [1..c]];
+     // LN:=[{Index(Tl,v):v in Setseq(L[i])}: i in [1..#L]];
+      //LN;
+      //OLN:={{Index(Tl,v),Index(Tl,w),Index(Tl,u)}: v,w,u in Tl|exists{i: i in [1..#L]|{v,w,u} subset L[i]} and toReal([v,w,u],q,c) eq {*0^^Binomial(3,2)*} };
+			P:={{i:i in [1..c]| L[i] eq L[j]}: j in [1..c]};
+			printf "Partitions: %o\n\n",P;
+			
+			if OrthSets eq 0 and exists{i:i in [1..#P]|#Setseq(P)[i] in Divisors(m)} then //checks easy condition for colourability
+				runILP:=false;
+				b:=0;
+			elif OrthSets eq 0 and not diophantineSol(P,m) then
+        
+				runILP:=false;
+        
+				b:=2;
+			
+			else
+				runILP:=true;
+        //b:=1;
+			end if;
+			
+			//ILP
+			if runILP then
+				R:=RealField();
+
+				lhs:=Matrix(R,m+l,n,[]);
+				for i:=1 to m+l do
+					for j:=1 to n do
+						if i lt m+1 then
+							if Tl[j] in BBl[i] then
+								lhs[i][j]:=1;
+							else
+								lhs[i][j]:=0;
+							end if;
+						else
+							if Tl[j] in Ol[i-m] then
+								lhs[i][j]:=1;
+							else
+								lhs[i][j]:=0;
+							end if;
+						end if;
+					end for;
+					
+				end for;
+				
+
+				rhs:=Matrix(R,m+l,1,[1^^(m+l)]);
+				rel:=Matrix(R,m+l,1,[0^^(m),(-1)^^(l)]);
+				obj:=Matrix(R,1,n,[0^^(n)]);
+				
+			a,b:=MaximalZeroOneSolution(lhs,rel,rhs,obj);
+			end if;	
+			
+			if b eq 0 then //output the result of the ILP
+				printf "Solution Exists\n\n";//"Optimal Solution:\n%o",a;
+				//printf "Bases: %o\n\n Orthogonal Pairs: %o\n\n",BNl,ONl;
+			elif b eq 1 or b eq 4 then
+				printf "Failure\n\n";
+				printf "Bases: %o\n\n Orthogonal Pairs: %o\n\n",BNl,ONl;
+			elif b eq 2 then
+				printf "**Infeasible problem**\n";
+				printf "Bases: %o\n\n Orthogonal Pairs: %o\n\n",BNl,ONl;
+				
+				if #{#p:p in P} gt 1 then print "flag";end if; //flags if any interesting cases arise
+			elif b eq 3 then
+				printf "Unbounded problem";
+			end if;
+      
+		end for;
+	end for;
+end procedure;
+
+//S:=[sub<RowSpace(H3)|{u:u in RowSpace(H3)| Eltseq(u)[i] eq 0}>:i in [2..6]]; // shows that certain pairs form a 1-factorization of K_6
+//ssLP(H3:L:=S);
+
+//f:= map<GF(p)->ComplexField()|x:->RootOfUnity(p)^(Integers()!x)>; //code to change FF matrix to Complex
+//h3:=ChangeRing(H3,ComplexField(),f);
+
+//g:= map<ComplexField()-> GF(p)|x:-> GF(p)!Truncate((p/(2*Pi(RealField())))*Imaginary(Log(x)))>; 
+//H3:=ChangeRing(h3,GF(3),g);

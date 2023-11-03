@@ -1,0 +1,87 @@
+q:=function(v)
+	return &+[k^2:k in Eltseq(v)];
+end function;
+
+wsVecs:= function(k)
+	//returns the list of well-signed integer vectors with q(v)=k
+	V:=VectorSpace(Rationals(),3);
+
+	return {V![a,b,c]:a,b,c in [-Floor(Sqrt(k))..Floor(Sqrt(k))]|q([a,b,c]) eq k and (((a eq 0 and b eq 0 and c gt 0) or (a eq 0 and b gt 0 and c eq 0) or (a gt 0 and b eq 0 and c eq 0)) or ((a eq 0 and b gt 0 and c ne 0) or (b eq 0 and a gt 0 and c ne 0) or (c eq 0 and a gt 0 and b ne 0)) or ((a*b*c ne 0) and ((a gt 0 and b gt 0 ) or (a gt 0  and c gt 0) or ( b gt 0 and c gt 0))))};
+end function;
+
+vecLP:= procedure(z,p)
+
+	//D := {d: d in [1..z^p]|exists{k:k in [0..p]| d in Divisors(z^k)}};
+	
+	Q:= [wsVecs(d):d in Divisors(z^p)];
+	
+	Sl:= SetToSequence(&join Q);
+	
+	
+	O3 := SetToSequence({{v,w,u}:v,w,u in Sl|DotProduct(v,w) eq 0 and DotProduct(w,u) eq 0 and DotProduct(v,u) eq 0}); //orthogonal triples
+	O2 := SetToSequence({{v,w}:v,w in Sl| DotProduct(v,w) eq 0  and not exists{b:b in O3|v in b and w in b}}); //orthogonal pairs
+	
+	
+    n:=#Sl;
+	
+	m:=#O3; //number bases
+	n:=#Sl; //number of vectors
+	
+	
+	l:=#O2;
+	
+	O2Nl:=SetToSequence({{Index(Sl,v):v in O2[j]}:j in [1..l]});
+	
+	
+	O3N:={{Index(Sl,v):v in O3[j]}:j in [1..m]}; //converts vectors to distinct integers
+	O3Nl:=SetToSequence(O3N);
+	
+	printf "Number of bases: %o\nNumber of vectors/codewords: %o\nNumber of Orth Pairs: %o\n",m,n,l;
+	
+	//ILP
+	
+	R:=RealField();
+
+	lhs:=Matrix(R,m+l,n,[]);
+	for i:=1 to m+l do
+		for j:=1 to n do
+			if i lt m+1 then
+				if Sl[j] in O3[i] then
+					lhs[i][j]:=1;
+				else
+					lhs[i][j]:=0;
+				end if;
+			else
+				if Sl[j] in O2[i-m] then
+					lhs[i][j]:=1;
+				else
+					lhs[i][j]:=0;
+				end if;
+			end if;
+		end for;
+		
+	end for;
+	
+
+	rhs:=Matrix(R,m+l,1,[1^^(m+l)]);
+	rel:=Matrix(R,m+l,1,[0^^(m),(-1)^^(l)]);
+	obj:=Matrix(R,1,n,[0^^(n)]);
+	
+	a,b:=MaximalZeroOneSolution(lhs,rel,rhs,obj);
+	
+	if b eq 0 then //output the result of the ILP
+		printf "Solution Exists\n\n";//"Optimal Solution:\n%o",a;
+	elif b eq 1 or b eq 4 then
+		printf "Failure";
+	elif b eq 2 then
+		printf "**Infeasible problem**\n";
+		printf "Bases: %o\n\n Orthogonal Pairs: %o\n\n",O3Nl,O2Nl;
+		
+	elif b eq 3 then
+		printf "Unbounded problem";
+	end if;
+	
+	//end for;
+end procedure;
+
+//hello

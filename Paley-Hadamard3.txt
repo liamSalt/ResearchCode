@@ -1,0 +1,105 @@
+X := function(K,q)
+	//character function
+	sq:={x^2:x in K} diff {K!0};
+
+	if q eq K!0 then
+		return 0;
+	elif q in sq then
+		return 1;
+	else 
+		return -1;
+	end if;
+end function;
+
+
+
+
+Paley := function(q);
+	if IsOdd(q) and IsPrimePower(q) then
+		printf "\nq=%o      q mod 8=%o\n",q, q mod 8;
+		
+		Fq:=GF(q);
+		Fql:=SetToSequence(Set(Fq));
+		
+		Q:=Matrix(Rationals(),q,q,[]);
+		for i:=1 to q do
+			for j:=1 to q do
+				Q[i,j]:=X(Fq,Fql[j]-Fql[i]);
+			end for;
+		end for;
+		
+		
+		
+		C:= VerticalJoin(Matrix(Rationals(),1,q+1,[0,1^^(q)]),HorizontalJoin(Matrix(Rationals(),q,1,[1^^q]),Q));
+		
+		I := Matrix(Rationals(),q+1,q+1,[]);
+		for i:=1 to q+1 do
+			for j:=1 to q+1 do
+				if i eq j then
+					I[i,j]:=1;
+				else
+					I[i,j]:=0;
+				end if;
+			end for;
+		end for;
+		
+		
+		if (q mod 4) eq 3 then
+			for i:=2 to q+1 do
+				C[i,1]:=-1;
+			end for;
+			
+			H:= I+C;
+			
+		elif (q mod 4) eq 1 then
+		
+			H1:=I+C;
+			H2:=-I+C;
+			H3:=H2;
+			H4:=-I-C;
+			
+			H:= VerticalJoin(HorizontalJoin(H1,H2),HorizontalJoin(H3,H4));
+			
+		end if;
+		
+		assert IsHadamard(H);
+		
+		n:= NumberOfRows(H);
+		
+		
+		HB := Matrix(GF(2),n,n,[]);
+		for i:=1 to n do
+			for j:=1 to n do
+				if H[i,j] eq 1 then HB[i,j]:= GF(2)!0; else HB[i,j]:= GF(2)!1; end if;
+			end for;
+		end for;
+		
+		//now make first row all 0
+		for j:=1 to n do
+			t:=HB[1,j];
+			for i:=1 to n do
+				HB[i,j]:=HB[i,j]-t;
+			end for;
+		end for;
+		
+		//now make first column all 0
+		for i:=1 to n do
+			t:=HB[i,1];
+			for j:=1 to n do
+				HB[i,j]:=HB[i,j]-t;
+			end for;
+		end for;
+		d:= Dimension(LinearCode(HB));
+		print HB;
+		
+		printf "order of H is %o\nrank of H is %o\n", n,d;
+	
+		if (2^d mod n) ne 0 then
+			print "***";
+		end if;
+		
+		
+		return HB;
+	end if;
+	return 0;
+end function;

@@ -1,0 +1,138 @@
+Q:=Rationals();
+
+//Order 2
+O2W1:=MatrixGroup<3,Q|[1,0,0,0,-1,0,0,0,-1]>;
+O2W2:=MatrixGroup<3,Q|[-1,0,0,0,1,0,0,0,1]>;
+O2W3:=MatrixGroup<3,Q|[-1,0,0,0,0,1,0,1,0]>;
+O2W4:=MatrixGroup<3,Q|[1,0,0,0,0,-1,0,-1,0]>;
+O2W5:=MatrixGroup<3,Q|[-1,0,0,0,-1,0,0,0,-1]>;
+
+O2:=[[O2W1,O2W2,O2W3,O2W4,O2W5]];
+G2:=[<2,1>];
+
+//Order 3
+O3W1:=MatrixGroup<3,Q|[1,0,0,0,0,-1,0,1,-1]>;
+O3W2:=MatrixGroup<3,Q|[0,1,0,0,0,1,1,0,0]>;
+
+O3:=[[O3W1,O3W2]];
+G3:=[<3,1>];
+
+//Order 4
+O4W1:=MatrixGroup<3,Q|[1,0,0,0,0,-1,0,1,0]>;
+O4W2:=MatrixGroup<3,Q|[-1,0,0,0,0,1,0,-1,0]>;
+O4W3:=MatrixGroup<3,Q|[1,0,1,0,0,-1,0,1,0]>;
+O4W4:=MatrixGroup<3,Q|[-1,0,-1,0,0,1,0,-1,0]>;
+
+O4W5:=MatrixGroup<3,Q|[1,0,0,0,-1,0,0,0,-1],[-1,0,0,0,-1,0,0,0,-1]>;
+O4W6:=MatrixGroup<3,Q|[1,0,0,0,-1,0,0,0,-1],[-1,0,0,0,-1,0,0,0,1]>;
+O4W7:=MatrixGroup<3,Q|[1,0,0,0,-1,0,0,0,-1],[1,0,0,0,1,0,0,0,-1]>;
+O4W8:=MatrixGroup<3,Q|[1,0,0,0,-1,0,0,0,-1],[-1,0,0,0,0,-1,0,-1,0]>;
+O4W9:=MatrixGroup<3,Q|[1,0,0,0,-1,0,0,0,-1],[1,0,0,0,0,1,0,1,0]>;
+O4W10:=MatrixGroup<3,Q|[-1,0,0,0,1,0,0,0,1],[1,0,0,0,0,1,0,1,0]>;
+O4W11:=MatrixGroup<3,Q|[-1,0,0,0,0,1,0,1,0],[-1,0,0,0,-1,0,0,0,-1]>;
+O4W12:=MatrixGroup<3,Q|[-1,0,0,0,0,1,0,1,0],[-1,0,0,1,0,-1,-1,-1,0]>;
+O4W13:=MatrixGroup<3,Q|[-1,0,0,0,0,1,0,1,0],[1,0,0,-1,0,1,1,1,0]>;
+O4W14:=MatrixGroup<3,Q|[-1,0,0,0,0,1,0,1,0],[-1,1,-1,0,0,-1,0,-1,0]>;
+O4W15:=MatrixGroup<3,Q|[-1,0,0,0,0,1,0,1,0],[1,-1,1,0,0,1,0,1,0]>;
+
+O4:=[[O4W1,O4W2,O4W3,O4W4],[O4W5,O4W6,O4W7,O4W8,O4W9,O4W10,O4W11,O4W12,O4W13,O4W14,O4W15]];
+G4:=[<4,1>,<4,2>];
+
+
+//Order 6
+O6W1:=MatrixGroup<3,Q|[1,0,0,0,0,-1,0,1,1]>;
+O6W2:=MatrixGroup<3,Q|[-1,0,0,0,0,1,0,-1,-1]>;
+O6W3:=MatrixGroup<3,Q|[-1,0,0,0,0,1,0,-1,1]>;
+O6W4:=MatrixGroup<3,Q|[0,-1,0,0,0,-1,-1,0,0]>;
+
+O6W5:=MatrixGroup<3,Q|[1,0,0,0,0,-1,0,1,-1],[-1,0,0,0,0,-1,0,-1,0]>;
+O6W6:=MatrixGroup<3,Q|[1,0,0,0,0,-1,0,1,-1],[1,0,0,0,0,1,0,1,0]>;
+O6W7:=MatrixGroup<3,Q|[1,0,0,0,0,-1,0,1,-1],[-1,0,0,0,0,1,0,1,0]>;
+O6W8:=MatrixGroup<3,Q|[1,0,0,0,0,-1,0,1,-1],[1,0,0,0,0,-1,0,-1,0]>;
+O6W9:=MatrixGroup<3,Q|[0,1,0,0,0,1,1,0,0],[0,0,-1,0,-1,0,-1,0,0]>;
+O6W10:=MatrixGroup<3,Q|[0,1,0,0,0,1,1,0,0],[0,0,1,0,1,0,1,0,0]>;
+
+O6:=[[O6W1,O6W2,O6W3,O6W4],[O6W5,O6W6,O6W7,O6W8,O6W9,O6W10]];
+G6:=[<6,2>,<6,1>];
+
+//Order 8
+O8W1:=MatrixGroup<3,Q|[1,0,0,0,0,-1,0,1,0],[-1,0,0,0,-1,0,0,0,-1]>;
+O8W2:=MatrixGroup<3,Q|[1,0,1,0,0,-1,0,1,0],[-1,0,0,0,-1,0,0,0,-1]>;
+O8W3:=MatrixGroup<3,Q|[1,0,0,0,-1,0,0,0,-1],[-1,0,0,0,-1,0,0,0,1],[-1,0,0,0,-1,0,0,0,-1]>;
+O8W4:=MatrixGroup<3,Q|[1,0,0,0,-1,0,0,0,-1],[-1,0,0,0,0,-1,0,-1,0],[-1,0,0,0,-1,0,0,0,-1]>;
+O8W5:=MatrixGroup<3,Q|[-1,0,0,0,0,1,0,1,0],[-1,0,0,1,0,-1,-1,-1,0],[-1,0,0,0,-1,0,0,0,-1]>;
+O8W6:=MatrixGroup<3,Q|[-1,0,0,0,0,1,0,1,0],[-1,1,-1,0,0,-1,0,-1,0],[-1,0,0,0,-1,0,0,0,-1]>;
+
+O8W7:=MatrixGroup<3,Q|[1,0,0,0,0,-1,0,1,0],[-1,0,0,0,0,1,0,1,0]>;
+O8W8:=MatrixGroup<3,Q|[1,0,0,0,0,-1,0,1,0],[1,0,0,0,0,-1,0,-1,0]>;
+O8W9:=MatrixGroup<3,Q|[-1,0,0,0,0,1,0,-1,0],[-1,0,0,0,0,1,0,1,0]>;
+O8W10:=MatrixGroup<3,Q|[-1,0,0,0,0,1,0,-1,0],[1,0,0,0,0,-1,0,-1,0]>;
+O8W11:=MatrixGroup<3,Q|[1,0,1,0,0,-1,0,1,0],[-1,0,0,0,0,-1,0,-1,0]>;
+O8W12:=MatrixGroup<3,Q|[1,0,1,0,0,-1,0,1,0],[1,0,0,0,0,1,0,1,0]>;
+O8W13:=MatrixGroup<3,Q|[-1,0,-1,0,0,1,0,-1,0],[-1,0,0,0,0,-1,0,-1,0]>;
+O8W14:=MatrixGroup<3,Q|[-1,0,-1,0,0,1,0,-1,0],[1,0,0,0,0,1,0,1,0]>;
+
+O8:=[[O8W1,O8W2],[O8W3,O8W4,O8W5,O8W6],[O8W7,O8W8,O8W9,O8W10,O8W11,O8W12,O8W13,O8W14]];
+G8:=[<8,2>,<8,5>,<8,3>];
+
+//Order 12
+O12W1:=MatrixGroup<3,Q|[1,0,0,0,0,-1,0,1,1],[-1,0,0,0,-1,0,0,0,-1]>;
+
+O12W2:=MatrixGroup<3,Q|[1,0,0,0,0,-1,0,1,1],[-1,0,0,0,0,1,0,1,0]>;
+O12W3:=MatrixGroup<3,Q|[1,0,0,0,0,-1,0,1,1],[1,0,0,0,0,-1,0,-1,0]>;
+O12W4:=MatrixGroup<3,Q|[-1,0,0,0,0,1,0,-1,-1],[-1,0,0,0,0,1,0,1,0]>;
+O12W5:=MatrixGroup<3,Q|[-1,0,0,0,0,1,0,-1,-1],[1,0,0,0,0,-1,0,-1,0]>;
+O12W6:=MatrixGroup<3,Q|[-1,0,0,0,0,1,0,-1,1],[-1,0,0,0,0,-1,0,-1,0]>;
+O12W7:=MatrixGroup<3,Q|[-1,0,0,0,0,1,0,-1,1],[-1,0,0,0,0,1,0,1,0]>;
+O12W8:=MatrixGroup<3,Q|[0,-1,0,0,0,-1,-1,0,0],[0,0,-1,0,-1,0,-1,0,0]>;
+
+O12W9:=MatrixGroup<3,Q|[0,1,0,0,0,1,1,0,0],[-1,0,0,0,1,0,0,0,-1]>;
+O12W10:=MatrixGroup<3,Q|[0,1,0,0,0,1,1,0,0],[0,-1,1,0,-1,0,1,-1,0]>;
+O12W11:=MatrixGroup<3,Q|[0,1,0,0,0,1,1,0,0],[-1,-1,-1,0,0,1,0,1,0]>;
+
+O12:=[[O12W1],[O12W2,O12W3,O12W4,O12W5,O12W6,O12W7,O12W8],[O12W9,O12W10,O12W11]];
+G12:=[<12,5>,<12,4>,<12,3>];
+
+//Order 16
+O16W1:=MatrixGroup<3,Q|[1,0,0,0,0,-1,0,1,0],[-1,0,0,0,0,1,0,1,0],[-1,0,0,0,-1,0,0,0,-1]>;
+O16W2:=MatrixGroup<3,Q|[1,0,1,0,0,-1,0,1,0],[-1,0,0,0,0,-1,0,-1,0],[-1,0,0,0,-1,0,0,0,-1]>;
+
+O16:=[[O16W1,O16W2]];
+G16:=[<16,11>];
+
+//Order 24
+O24W1:=MatrixGroup<3,Q|[0,1,0,0,0,1,1,0,0],[-1,0,0,0,1,0,0,0,-1],[-1,0,0,0,-1,0,0,0,-1]>;
+O24W2:=MatrixGroup<3,Q|[0,1,0,0,0,1,1,0,0],[0,-1,1,0,-1,0,1,-1,0],[-1,0,0,0,-1,0,0,0,-1]>;
+O24W3:=MatrixGroup<3,Q|[0,1,0,0,0,1,1,0,0],[-1,-1,-1,0,0,1,0,1,0],[-1,0,0,0,-1,0,0,0,-1]>;
+
+O24W4:=MatrixGroup<3,Q|[1,0,0,0,0,-1,0,1,1],[-1,0,0,0,0,1,0,1,0],[-1,0,0,0,-1,0,0,0,-1]>;
+O24W5:=MatrixGroup<3,Q|[1,0,0,0,0,-1,0,1,-1],[-1,0,0,0,0,-1,0,-1,0],[-1,0,0,0,-1,0,0,0,-1]>;
+
+O24W6:=MatrixGroup<3,Q|[0,0,1,0,1,0,-1,0,0],[-1,0,0,0,0,-1,0,-1,0]>;
+O24W7:=MatrixGroup<3,Q|[0,0,-1,0,-1,0,1,0,0],[1,0,0,0,0,1,0,1,0]>;
+O24W8:=MatrixGroup<3,Q|[0,-1,0,1,1,1,-1,0,0],[-1,-1,0,0,1,0,0,0,-1]>;
+O24W9:=MatrixGroup<3,Q|[0,1,0,-1,-1,-1,1,0,0],[1,1,0,0,-1,0,0,0,1]>;
+O24W10:=MatrixGroup<3,Q|[1,1,0,-2,-1,-1,0,0,1],[-1,-1,-1,0,0,1,0,1,0]>;
+O24W11:=MatrixGroup<3,Q|[-1,-1,0,2,1,1,0,0,-1],[1,1,1,0,0,-1,0,-1,0]>;
+
+O24:=[[O24W1,O24W2,O24W3],[O24W4,O24W5],[O24W6,O24W7,O24W8,O24W9,O24W10,O24W11]];
+G24:=[<24,13>,<24,14>,<24,12>];
+
+//Order 48
+O48W1:=MatrixGroup<3,Q|[0,0,1,0,1,0,-1,0,0],[-1,0,0,0,0,-1,0,-1,0],[-1,0,0,0,-1,0,0,0,-1]>;
+O48W2:=MatrixGroup<3,Q|[0,-1,0,1,1,1,-1,0,0],[-1,-1,0,0,1,0,0,0,-1],[-1,0,0,0,-1,0,0,0,-1]>;
+O48W3:=MatrixGroup<3,Q|[1,1,0,-2,-1,-1,0,0,1],[-1,-1,-1,0,0,1,0,1,0],[-1,0,0,0,-1,0,0,0,-1]>;
+
+O48:=[[O48W1,O48W2,O48W3]];
+
+checkGroups:= procedure()
+for i:=1 to #O2 do for G in O2[i] do printf("Group: %o\n\nIdentity: %o\n\nSame as Paper Claims: %o, %o\n\n"),G,IdentifyGroup(G),IdentifyGroup(G) eq G2[i],G2[i];end for;end for;
+for i:=1 to #O3 do for G in O3[i] do printf("Group: %o\n\nIdentity: %o\n\nSame as Paper Claims: %o, %o\n\n"),G,IdentifyGroup(G),IdentifyGroup(G) eq G3[i],G3[i];end for;end for;
+for i:=1 to #O4 do for G in O4[i] do printf("Group: %o\n\nIdentity: %o\n\nSame as Paper Claims: %o, %o\n\n"),G,IdentifyGroup(G),IdentifyGroup(G) eq G4[i],G4[i];end for;end for;
+for i:=1 to #O6 do for G in O6[i] do printf("Group: %o\n\nIdentity: %o\n\nSame as Paper Claims: %o, %o\n\n"),G,IdentifyGroup(G),IdentifyGroup(G) eq G6[i],G6[i];end for;end for;
+for i:=1 to #O8 do for G in O8[i] do printf("Group: %o\n\nIdentity: %o\n\nSame as Paper Claims: %o, %o\n\n"),G,IdentifyGroup(G),IdentifyGroup(G) eq G8[i],G8[i];end for;end for;
+for i:=1 to #O12 do for G in O12[i] do printf("Group: %o\n\nIdentity: %o\n\nSame as Paper Claims: %o, %o\n\n"),G,IdentifyGroup(G),IdentifyGroup(G) eq G12[i],G12[i];end for;end for;
+for i:=1 to #O16 do for G in O16[i] do printf("Group: %o\n\nIdentity: %o\n\nSame as Paper Claims: %o, %o\n\n"),G,IdentifyGroup(G),IdentifyGroup(G) eq G16[i],G16[i];end for;end for;
+for i:=1 to #O24 do for G in O24[i] do printf("Group: %o\n\nIdentity: %o\n\nSame as Paper Claims: %o, %o\n\n"),G,IdentifyGroup(G),IdentifyGroup(G) eq G24[i],G24[i];end for;end for;
+for i:=1 to #O48 do for G in O48[i] do printf("Group: %o\n\nIdentity: %o\n\nSame as Paper Claims: N/A\n\n"),G,IdentifyGroup(G);end for;end for;
+end procedure;
